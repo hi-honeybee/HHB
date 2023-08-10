@@ -1,0 +1,6 @@
+detector/ultralytics_main/datasets/*
+detector/ultralytics_main/runs/*
+datasets/*
+__pycache__
+*.avi
+*.mp4

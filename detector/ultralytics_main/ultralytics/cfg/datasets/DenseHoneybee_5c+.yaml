@@ -1,0 +1,14 @@
+path: ../datasets/DenseHoneybee_5c+
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 5
+names: ['abdomen', 'bee', 'flyingbee', 'head', 'part_bee']
+
+roboflow:
+  workspace: likewiseu
+  project: densehoneybeedetection_multiclass
+  version: 4
+  license: BY-NC-SA 4.0
+  url: https://universe.roboflow.com/likewiseu/densehoneybeedetection_multiclass/dataset/4

@@ -1,0 +1,7 @@
+names:
+- bee
+nc: 1
+path: ../datasets/Only_Honey_bee_Data
+test: test/images
+train: train/images
+val: valid/images

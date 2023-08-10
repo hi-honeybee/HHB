@@ -1,0 +1,14 @@
+path: ../datasets/BeePollen  # dataset root dir
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 3
+names: ['Hornet', 'bee', 'pollen']
+
+roboflow:
+  workspace: beepollen2
+  project: beepollen
+  version: 8
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/beepollen2/beepollen/dataset/8
