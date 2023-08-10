@@ -9,11 +9,11 @@
 
 * HHB.py 내의 코드는 상의가 이뤄진 후에 수정하도록 합니다.
 
-* 통일성 및 명시성을 위해 사용하려는 코드는 Module.HHB_func(arg, **kargs) 형태로 호출하기로 정합니다.
+* 통일성 및 명시성을 위해 사용하려는 코드는 Module.HHB_func(arg, kargs) 형태로 호출하기로 정합니다.
 예시:
 
 ```python
-box = detector.HHB_detect(frame,**kargs)
+box = detector.HHB_detect(frame,kargs)
 ```
 
 모듈간의 의존성을 줄이기 위해 input과 output은 가능한 주석에 명시된 대로 따르도록 합니다.
