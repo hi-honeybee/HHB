@@ -10,7 +10,7 @@ Save: HHB_tools.Base
 
 kargs:
   data_PATH: datasets/queenbee.mp4
-  weight-PATH: detector/ultralytics_main/runs/detect/pretrain32s/weights/best.pt
+  weight-PATH: detector/ultralytics_main/runs/detect/pretrain/weights/best.pt
 
 
 
