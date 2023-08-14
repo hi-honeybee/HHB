@@ -1,10 +1,10 @@
 task: detect
 mode: train
-model: ./pretrained/yolov8s.pt
-data: /content/DenseHoneyBeeDetection_MultiClass-7/data.yaml
-epochs: 100
+model: /content/runs/detect/train/weights/best.pt
+data: /content/HHB-2/data.yaml
+epochs: 200
 patience: 50
-batch: 32
+batch: 25
 imgsz: 640
 save: true
 save_period: -1
@@ -71,8 +71,8 @@ momentum: 0.724992
 weight_decay: 0.000504437
 warmup_epochs: 1.74879
 warmup_momentum: 0.652665
-warmup_bias_lr: 0.0
-box: 0.128948
+warmup_bias_lr: 0.1
+box: 1.5
 cls: 0.35
 dfl: 1.5
 pose: 12.0
@@ -90,8 +90,8 @@ perspective: 0.000170238
 flipud: 0.670747
 fliplr: 0.505315
 mosaic: 0.786343
-mixup: 0.459334
+mixup: 0.2
 copy_paste: 0.400345
 cfg: null
 tracker: botsort.yaml
-save_dir: runs/detect/train7
+save_dir: runs/detect/train2
