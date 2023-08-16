@@ -284,6 +284,9 @@ class Model:
         return run_ray_tune(self, *args, **kwargs)
 
     def HHB_detect(self,frame,kargs):
+        self.predictor.args.conf=kargs.get('detector.iou',0.25)
+        self.predictor.args.iou=kargs.get('detector.iou',0.7)
+
         result, im, vid_caps = self.predict(frame)
         kargs['detector.im']=im
         kargs['detector.vid_caps']=vid_caps

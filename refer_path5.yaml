@@ -1,0 +1,22 @@
+DataLoader: HHB_tools.Base
+ImagPreprocessor: HHB_tools.frameslicer
+DetectorLoader: detector.ultralytics_main.HHB_detector
+DetectionPostprocessor: HHB_tools.sequence3
+TrackerLoader: tracker.SparseTrack_main.HHB_tracker
+TrackerPostprocessor: HHB_tools.Base
+Visualizer: detector.ultralytics_main.HHB_visualizer
+Save: HHB_tools.tracksaver
+
+
+kargs:
+  data_PATH: datasets/Honey Bee Landing Zone powered by Explore.org-o49SYbWxWE0.f137 (1).ts
+  weight-PATH: detector/ultralytics_main/runs/detect/train40/weights/best.pt
+  output-PATH: ./test5.mp4
+  track-PATH: ./track_result/
+  detect.iou: 0.5
+  detect.conf: 0.2
+  dataloader.vid_stride: 3
+
+
+
+

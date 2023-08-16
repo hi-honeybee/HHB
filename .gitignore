@@ -1,5 +1,6 @@
 detector/ultralytics_main/datasets/*
-detector/ultralytics_main/runs/*
+#detector/ultralytics_main/runs/*
+track_result/*
 datasets/*
 __pycache__
 *.avi

@@ -1,7 +1,8 @@
 import importlib
 import yaml
+import torch
 
-with open('refer_path.yaml') as f:
+with open('refer_path5.yaml') as f:
     refer_path = yaml.load(f, Loader=yaml.FullLoader)
 
 DataLoader = importlib.import_module(refer_path['DataLoader'])
@@ -15,11 +16,30 @@ Save = importlib.import_module(refer_path['Save'])
 # data_PATH, weight_PATH + additional arguments
 kargs=refer_path['kargs']
 
-if __name__=='__main__':
+
+import os
+def cycle(date='0723'):
+    for i in range(150):
+        print(i, 'start')
+        kargs['data_PATH'] = 'datasets/'+date+'/'+str(i)+'.mp4'
+        if not os.path.exists(kargs['data_PATH']): 
+            print(i,'not exists')
+            continue
+        kargs['track-PATH']='track_result/'+date+'/'+str(i)
+        if not os.path.exists('track_result/'+date): 
+            os.mkdir('track_result/'+date)
+        if os.path.exists(kargs['track-PATH']+'.pickle'):
+            print(i,'pass')
+            continue
+        HHB()
+        print(i,'finish')
+
+def HHB():
     # input: data_PATH
     # output: iter(tensor[h,w,c])
+    print(kargs['data_PATH'] )
     video_iter = DataLoader.HHB_dataload(kargs)
-
+    
     # input: weight_PATH
     # output: object - for detection
     detector = DetectorLoader.HHB_detectorload(kargs)
@@ -28,13 +48,14 @@ if __name__=='__main__':
     # output: object - for tracking
     tracker = TrackerLoader.HHB_trackerload(kargs)
 
+    tracks=[]
     for kargs['i'],frame in enumerate(video_iter):
         # input: tensor[h,w,c]
         # output: tensor[h,w,c]
         frame = Iprp.HHB_imgpreprocess(frame,kargs)
         
         # input: tensor[h,w,c]
-        # output: tensor[:, 6] where 6 is (x,y,w,h,scr,cls)
+        # output: tensor[:, 6] where 6 is (t,l,b,r,scr,cls)
         box = detector.HHB_detect(frame,kargs)
         
         # input: tensor[:, 6]
@@ -50,9 +71,12 @@ if __name__=='__main__':
         track = Tpop.HHB_trackpostprocess(track,kargs)
 
         # input: list(STrack)
-        Visualizer.HHB_visualize(track,kargs)
+        # Visualizer.HHB_visualize(track,kargs)
+        
+        tracks.append(track)
+    # input: list(STrack)
+    Save.HHB_save(tracks,kargs)
 
-        # input: list(STrack)
-        Save.HHB_save(track,kargs)
-
-        print(kargs['i'],)
+        
+if __name__=='__main__':
+    cycle()

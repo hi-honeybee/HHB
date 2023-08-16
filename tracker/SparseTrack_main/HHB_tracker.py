@@ -6,8 +6,8 @@ from tools import track
 
 def HHB_trackerload(kargs):
     args = track.make_parser().parse_args()
-    args.track_thresh = 0.0
-    args.track_buffer = 0
+    args.track_thresh = 0.5
+    args.track_buffer = 20
     args.down_scale = 2  
     args.layers = 2
     args.depth_levels=3

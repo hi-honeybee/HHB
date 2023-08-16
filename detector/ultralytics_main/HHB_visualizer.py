@@ -7,16 +7,16 @@ def HHB_visualize(track,kargs):
     tracked_results=STrack2Results(track,kargs)
 
     predictor.write_results(tracked_results, kargs['detector.im'])
-    predictor.save_preds(kargs['detector.vid_caps'])
+    predictor.save_preds(kargs['detector.vid_caps'],save_path=kargs['output-PATH'],vid_stride = kargs.get('dataloader.vid_stride',1))
 
     return
 
 def STrack2Results(track,kargs):
 
     result = kargs['detector.result']
-    orig_img = result[0].orig_img
+    orig_img = kargs['orig_img']
     path = result[0].path
-    names = result[0].names
+    names = ['bee']#result[0].names
     tracked_results = []
     preds = torch.zeros((len(track),7))
     for i,t in enumerate(track):

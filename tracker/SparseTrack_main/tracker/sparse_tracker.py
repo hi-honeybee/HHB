@@ -223,6 +223,7 @@ class SparseTracker(object):
             lend = (t.deep_vec)[2]
             col.append(lend)
         max_len, mix_len = max(col), min(col)
+
         if max_len != mix_len:
             deep_range =np.arange(mix_len, max_len, (max_len - mix_len + 1) / step)
             if deep_range[-1] < max_len:
@@ -326,6 +327,12 @@ class SparseTracker(object):
         return self.update(box)
 
     def update(self, output_results, curr_img = None):
+        
+        self.args.track_thresh=0.4
+        self.det_thresh=0.2
+        self.args.confirm_thresh=0.5
+        self.args.match_thresh=0.8
+
         self.frame_id += 1
         if self.frame_id == 1:
             self.pre_img = None
@@ -341,7 +348,7 @@ class SparseTracker(object):
 
         # divide high-score dets and low-scores dets
         remain_inds = scores > self.args.track_thresh
-        inds_low = scores > 0.1
+        inds_low = scores > 0.05
         inds_high = scores < self.args.track_thresh
         inds_second = np.logical_and(inds_low, inds_high)
 
@@ -392,7 +399,6 @@ class SparseTracker(object):
                                                                                 self.args.match_thresh, 
                                                                                 is_fuse=True)  
             
-            
         # association the untrack to the low score detections
         if len(dets_second) > 0:
             '''Detections'''
@@ -416,7 +422,6 @@ class SparseTracker(object):
                 track.mark_lost()
                 lost_stracks.append(track)  
 
-        
         # Deal with unconfirmed tracks, usually tracks with only one beginning frame 
         detections = [d for d in u_detection_high ]
         dists = iou_distance(unconfirmed, detections)
@@ -457,7 +462,8 @@ class SparseTracker(object):
         # get scores of lost tracks
         output_stracks = [track for track in self.tracked_stracks if track.is_activated]
         self.pre_img = curr_img
-        return output_stracks
+
+        return output_stracks + u_detection_sec
 
 def joint_stracks(tlista, tlistb):
     exists = {}

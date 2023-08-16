@@ -246,7 +246,7 @@ class BasePredictor:
 
     
 
-    def save_preds(self, vid_cap, save_path='./test.mp4',idx=0):
+    def save_preds(self, vid_cap, save_path='./test.mp4',idx=0,vid_stride=1):
         """Save video predictions as mp4 at specified path."""
         im0 = self.plotted_img
         # Save imgs
@@ -262,9 +262,9 @@ class BasePredictor:
                     w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
                     h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
                 else:  # stream
-                    fps, w, h = 30, im0.shape[1], im0.shape[0]
-                suffix = '.mp4' if MACOS else '.avi' if WINDOWS else '.avi'
-                fourcc = 'avc1' if MACOS else 'WMV2' if WINDOWS else 'MJPG'
+                    fps, w, h = int(30/vid_stride), im0.shape[1], im0.shape[0]
+                suffix = '.mp4' #if MACOS else '.avi' if WINDOWS else '.avi'
+                fourcc = 'mp4v' #if MACOS else 'WMV2' if WINDOWS else 'MJPG'
                 save_path = str(Path(save_path).with_suffix(suffix))
                 self.vid_writer[idx] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*fourcc), fps, (w, h))
             self.vid_writer[idx].write(im0)
