@@ -3,7 +3,7 @@ ImagPreprocessor: HHB_tools.frameslicer
 DetectorLoader: detector.ultralytics_main.HHB_detector
 DetectionPostprocessor: HHB_tools.sequence3
 TrackerLoader: tracker.SparseTrack_main.HHB_tracker
-TrackerPostprocessor: HHB_tools.Base
+TrackerPostprocessor: HHB_tools.tracksaver
 Visualizer: detector.ultralytics_main.HHB_visualizer
 Save: HHB_tools.tracksaver
 

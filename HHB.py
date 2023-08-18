@@ -18,21 +18,24 @@ kargs=refer_path['kargs']
 
 
 import os
-def cycle(date='0723'):
-    for i in range(150):
-        print(i, 'start')
-        kargs['data_PATH'] = 'datasets/'+date+'/'+str(i)+'.mp4'
-        if not os.path.exists(kargs['data_PATH']): 
-            print(i,'not exists')
-            continue
-        kargs['track-PATH']='track_result/'+date+'/'+str(i)
-        if not os.path.exists('track_result/'+date): 
-            os.mkdir('track_result/'+date)
-        if os.path.exists(kargs['track-PATH']+'.pickle'):
-            print(i,'pass')
-            continue
-        HHB()
-        print(i,'finish')
+import time
+def cycle(date='0809'):
+    while True:
+        for i in range(150):
+            print(i, 'start')
+            kargs['data_PATH'] = 'datasets/'+date+'/'+str(i)+'.mp4'
+            if not os.path.exists(kargs['data_PATH']): 
+                print(i,'not exists')
+                continue
+            kargs['track-PATH']='track_result/'+date+'/'+str(i)
+            if not os.path.exists('track_result/'+date): 
+                os.mkdir('track_result/'+date)
+            if os.path.exists(kargs['track-PATH']+'.pickle'):
+                print(i,'pass')
+                continue
+            HHB()
+            print(i,'finish')
+        time.sleep(600)
 
 def HHB():
     # input: data_PATH
@@ -74,6 +77,7 @@ def HHB():
         # Visualizer.HHB_visualize(track,kargs)
         
         tracks.append(track)
+
     # input: list(STrack)
     Save.HHB_save(tracks,kargs)
 
