@@ -1,0 +1,9 @@
+conda install -c anaconda cmake
+pip install numpy==1.22.4
+conda install -c conda-forge lap
+git clone https://github.com/ifzhang/ByteTrack.git
+cd ByteTrack
+pip install -r requirements.txt
+pip install cython; pip3 install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+pip install cython_bbox
+pip install psutil
