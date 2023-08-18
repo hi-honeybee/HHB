@@ -19,7 +19,7 @@ kargs=refer_path['kargs']
 
 import os
 import time
-def cycle(date='0723'):
+def cycle(date='0807'):
     while True:
         for i in range(150):
             print(i, 'start')

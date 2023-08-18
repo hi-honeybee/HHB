@@ -17,7 +17,6 @@ def HHB_imgpreprocess(frame,kargs):
 def HHB_imgrecombine(box,kargs):
     boxes=[]
     dev = 'cuda' if torch.cuda.is_available() else 'cpu'
-    print(dev)
     if isinstance(box,(tuple,list)):
         boxes.append(box[0].boxes.data)
         boxes.append(box[1].boxes.data.to(dev)+torch.tensor([0,440,0,440,0,0],device=dev))
