@@ -1,13 +1,19 @@
 # 실행방법
 (급하게 수정하느라 코드가 정리되있지 않을 수 있습니다)
 
+
 datasets 폴더를 만들고 그 밑에 해당하는 날짜로 폴더를 만들고 그 밑에 영상.mp4 파일을 넣어주세요
+
 예시) datasets/0802/1.mp4
 
+
 HHB.py에서 def cycle(date='date'): 의 'data'를 폴더명으로 적어주세요
+
 예시) def cycle(date='0802'):
 
+
 python HHB.py를 실행하면 track_result/0802/1.pickle로 결과가 저장됩니다.
+
 
 
 
